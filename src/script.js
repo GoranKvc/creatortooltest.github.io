@@ -160,23 +160,36 @@ const fbxPath = "DR1VER-CLOSED.fbx";
 const fbxloader = new FBXLoader();
 const textureLoader = new THREE.TextureLoader();
 
-fbxloader.load(fbxPath, function(fbxobj){
-    
+
+//Load helmet
+fbxloader.load(fbxPath, async function(fbxobj){
+    const baseColorMap = await textureLoader.load("Dynasty_BaseColor.png");
+    const metallicMap = await textureLoader.load("Dynasty_Metallic.png");
+    // const normalMap = await textureLoader.load("Mesh_RoughnessGL.png");
+    const roughnessMap = await textureLoader.load("Dynasty_Roughness.png");
+    const helmetMaterial = new THREE.MeshStandardMaterial({
+      color: 0xD4AF37,
+        // map: baseColorMap, 
+    //   displacementMap: heightMap,
+      metalnessMap: metallicMap,
+    //   normalMap: normalMap,
+      roughnessMap
+    });
     // window.alert("Reading FBX.. please accept and wait");
     fbxobj.traverse(function(child){
         if(child.isMesh)
         {
             child.castShadow = true;
             child.receiveShadow = true;
-            child.material = blackMaterial;
+            child.material = helmetMaterial;
 
-            textureLoader.load( 'hackatao.PNG', ( texture ) => {
-                // window.alert(texture);
-                // console.log(texture);
-                child.material.map = texture;
-                child.material.needsupdate = true;
+            // textureLoader.load( 'hackatao.PNG', ( texture ) => {
+            //     // window.alert(texture);
+            //     // console.log(texture);
+            //     child.material.map = texture;
+            //     child.material.needsupdate = true;
             
-            });
+            // });
         }
     });
 
@@ -191,6 +204,99 @@ fbxloader.load(fbxPath, function(fbxobj){
     cubeFolder.open();
     
     fbxobj.scale.set(s, s, s);
+
+});
+
+//Load env
+const fbxPathEnv = "table.fbx";
+const tableFolder = gui.addFolder('Table');
+fbxloader.load(fbxPathEnv, async function(fbxobj2){
+    const baseColorMap = await textureLoader.load("Sci-fi_Box_AlbedoTransparency.png");
+    const metallicMap = await textureLoader.load("Sci-fi_Box_MetallicSmoothness.png");
+    const normalMap = await textureLoader.load("Sci-fi_Box_Normal_OpenGL.png");
+    // const roughnessMap = await textureLoader.load("fi_Box_MetallicSmoothness.png");
+    const minigunMaterial = new THREE.MeshStandardMaterial({
+      map: baseColorMap, 
+    //   displacementMap: heightMap,
+      metalnessMap: metallicMap,
+      normalMap: normalMap,
+      roughness: 0.1
+    //   roughnessMap
+    });
+
+    for (let child of fbxobj2.children) {
+      child.material = minigunMaterial;
+    };
+    
+    // window.alert("Reading FBX.. please accept and wait");
+    fbxobj2.traverse(function(child){
+        if(child.isMesh)
+        {
+            child.castShadow = true;
+            child.receiveShadow = true;
+            child.material = minigunMaterial;
+
+            // textureLoader.load( 'hackatao.PNG', ( texture ) => {
+            //     // window.alert(texture);
+            //     // console.log(texture);
+            //     child.material.map = texture;
+            //     child.material.needsupdate = true;
+            
+            // });
+        }
+    });
+
+    
+    
+    let s = 0.01;
+    scene.add(fbxobj2);
+
+    tableFolder.add(fbxobj2.position, 'x', -10, 10).name("Pos X");
+    tableFolder.add(fbxobj2.position, 'y', -10, 10).name("Pos Y");
+    tableFolder.add(fbxobj2.position, 'z', -10, 10).name("Pos Z");
+    tableFolder.open();
+    
+    fbxobj2.scale.set(s, s, s);
+    fbxobj2.position.set(0, -0.6, -15);
+
+});
+
+
+//Load env
+const fbxPathEnv2 = "env.fbx";
+const labFolder = gui.addFolder('Lab');
+fbxloader.load(fbxPathEnv2, function(fbxobj3){
+    
+    // window.alert("Reading FBX.. please accept and wait");
+    fbxobj3.traverse(function(child){
+        if(child.isMesh)
+        {
+            child.castShadow = true;
+            child.receiveShadow = true;
+            child.material = blackMaterial;
+
+            // textureLoader.load( 'hackatao.PNG', ( texture ) => {
+            //     // window.alert(texture);
+            //     // console.log(texture);
+            //     child.material.map = texture;
+            //     child.material.needsupdate = true;
+            
+            // });
+        }
+    });
+
+    
+    
+    let s = 0.01;
+    scene.add(fbxobj3);
+
+    labFolder.add(fbxobj3.position, 'x', -10, 10).name("Pos X");
+    labFolder.add(fbxobj3.position, 'y', -10, 10).name("Pos Y");
+    labFolder.add(fbxobj3.position, 'z', -10, 10).name("Pos Z");
+    labFolder.open();
+    
+    fbxobj3.scale.set(s, s, s);
+    fbxobj3.position.set(0, -0.6, 5);
 
 });
 
