@@ -129,22 +129,22 @@ imgLoader.load(hdriTex, function(texture){
 
 
 ///FBXXXXXXXXXXXXX
-// const fbxPath = "./src/models/DR1VER-CLOSED.fbx";
+const fbxPath = "./src/models/DR1VER-CLOSED.fbx";
 
-// const fbxloader = new FBXLoader();
-//     fbxloader.load(fbxPath, function(fbxobj){
-//         fbxobj.traverse(function(child){
-//             if(child.isMesh)
-//             {
-//                 child.castShadow = true;
-//                 child.receiveShadow = true;
-//     window.alert("hi");
-//             }
-//         });
-//         let s = 0.01;
-//         scene.add(fbxobj);
-//         fbxobj.scale.set(s, s, s);
-//     });
+const fbxloader = new FBXLoader();
+    fbxloader.load(fbxPath, function(fbxobj){
+        fbxobj.traverse(function(child){
+            if(child.isMesh)
+            {
+                child.castShadow = true;
+                child.receiveShadow = true;
+    window.alert("hi");
+            }
+        });
+        let s = 0.01;
+        scene.add(fbxobj);
+        fbxobj.scale.set(s, s, s);
+    });
 
 // //----------------
 
