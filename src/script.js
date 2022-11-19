@@ -4,7 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import * as dat from 'dat.gui';
 import {RGBELoader} from 'three/examples/jsm/loaders/RGBELoader.js';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 // import fbxmodel from './fbxloader';
 // import { Vector3 } from 'three';
 // import Stats from 'three/examples/jsm/libs/stats.module'
@@ -141,7 +141,7 @@ const fbxPath = "DR1VER-CLOSED.fbx";
 
 const fbxloader = new FBXLoader();
     fbxloader.load(fbxPath, function(fbxobj){
-        window.alert("Readin FBX.. please wait");
+        // window.alert("Reading FBX.. please accept and wait");
         fbxobj.traverse(function(child){
             if(child.isMesh)
             {
@@ -149,7 +149,7 @@ const fbxloader = new FBXLoader();
                 child.receiveShadow = true;
                 child.material = blackMaterial;
 
-                textureLoader.load( 'hackatao.PNG', ( texture ) => {
+                imgLoader.load( 'hackatao.PNG', ( texture ) => {
                             
                     child.material.map = texture;
                     child.material.needsupdate = true;
@@ -162,6 +162,7 @@ const fbxloader = new FBXLoader();
         scene.add(fbxobj);
         
         fbxobj.scale.set(s, s, s);
+
     });
 
 // //----------------
@@ -170,6 +171,7 @@ const fbxloader = new FBXLoader();
 
 const gltfLoader = new GLTFLoader();
 gltfLoader.load("./box.gltf", (objectModel) => {
+    objectModel.position.x = 3;
     scene.add(objectModel);
 });
 
