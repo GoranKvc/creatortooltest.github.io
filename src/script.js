@@ -150,10 +150,10 @@ imgLoader.load(hdriTex, function(texture){
 
 
 
-// const gltfLoader = new GLTFLoader();
-// gltfLoader.load("models/box.gltf", (objectModel) => {
-//     scene.add(objectModel);
-// });
+const gltfLoader = new GLTFLoader();
+gltfLoader.load("./models/box.gltf", (objectModel) => {
+    scene.add(objectModel);
+});
 
 
 
