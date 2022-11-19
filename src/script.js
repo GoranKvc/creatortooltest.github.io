@@ -32,6 +32,13 @@ const redMaterial = new THREE.MeshStandardMaterial({
     color: 0xff0000,
     // envMap: texture
 })
+
+const blackMaterial = new THREE.MeshStandardMaterial({
+    roughness: 0,
+    metalness: 0.5,
+    color: 0x000000,
+    // envMap: texture
+})
 // material.color = new THREE.Color(0xffcccc)
 
 // Mesh
@@ -140,10 +147,15 @@ const fbxloader = new FBXLoader();
             {
                 child.castShadow = true;
                 child.receiveShadow = true;
-                child.material = redMaterial;
+                child.material = blackMaterial;
 
+                textureLoader.load( 'hackatao.PNG', ( texture ) => {
+                            
+                    child.material.map = texture;
+                    child.material.needsupdate = true;
+                    console.log(texture);
                 
-    // window.alert("hi");
+                });
             }
         });
         let s = 0.01;
