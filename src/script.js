@@ -129,7 +129,8 @@ imgLoader.load(hdriTex, function(texture){
 
 
 ///FBXXXXXXXXXXXXX
-const fbxPath = "../src/models/DR1VER-CLOSED.fbx";
+// const fbxPath = "../../src/models/DR1VER-CLOSED.fbx";
+const fbxPath = "DR1VER-CLOSED.fbx";
 
 const fbxloader = new FBXLoader();
     fbxloader.load(fbxPath, function(fbxobj){
@@ -153,7 +154,7 @@ const fbxloader = new FBXLoader();
 
 
 const gltfLoader = new GLTFLoader();
-gltfLoader.load("./models/box.gltf", (objectModel) => {
+gltfLoader.load("./box.gltf", (objectModel) => {
     scene.add(objectModel);
 });
 
