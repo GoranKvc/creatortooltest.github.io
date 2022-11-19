@@ -26,7 +26,7 @@ const geometry = new THREE.TorusGeometry( .5, .2, 64, 64, );
 
 // Materials
 
-const material = new THREE.MeshStandardMaterial({
+const redMaterial = new THREE.MeshStandardMaterial({
     roughness: 0,
     metalness: 0.5,
     color: 0xff0000,
@@ -35,7 +35,7 @@ const material = new THREE.MeshStandardMaterial({
 // material.color = new THREE.Color(0xffcccc)
 
 // Mesh
-const sphere = new THREE.Mesh(geometry,material);
+const sphere = new THREE.Mesh(geometry,redMaterial);
 scene.add(sphere);
 
 // Lights
@@ -139,13 +139,15 @@ const fbxloader = new FBXLoader();
             {
                 child.castShadow = true;
                 child.receiveShadow = true;
+                child.material = redMaterial;
 
                 
-    window.alert("hi");
+    // window.alert("hi");
             }
         });
         let s = 0.01;
         scene.add(fbxobj);
+        
         fbxobj.scale.set(s, s, s);
     });
 
