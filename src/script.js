@@ -134,6 +134,7 @@ const fbxPath = "DR1VER-CLOSED.fbx";
 
 const fbxloader = new FBXLoader();
     fbxloader.load(fbxPath, function(fbxobj){
+        window.alert("Readin FBX.. please wait");
         fbxobj.traverse(function(child){
             if(child.isMesh)
             {
