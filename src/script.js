@@ -129,7 +129,7 @@ imgLoader.load(hdriTex, function(texture){
 
 
 ///FBXXXXXXXXXXXXX
-const fbxPath = "./src/models/DR1VER-CLOSED.fbx";
+const fbxPath = "../src/models/DR1VER-CLOSED.fbx";
 
 const fbxloader = new FBXLoader();
     fbxloader.load(fbxPath, function(fbxobj){
@@ -138,6 +138,8 @@ const fbxloader = new FBXLoader();
             {
                 child.castShadow = true;
                 child.receiveShadow = true;
+
+                
     window.alert("hi");
             }
         });
